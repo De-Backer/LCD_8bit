@@ -9,11 +9,13 @@
 extern "C"{
 #endif
 
-#define F_CPU 14745600UL // 14745600 Hz clock speed
+//#define F_CPU 14745600UL // 14745600 Hz clock speed
 
 #include <avr/io.h>
 #ifdef F_CPU
 #include <util/delay.h>
+#else
+#error no F_CPU include lcd_8bit.h
 #endif
 #include <stdlib.h>
 
