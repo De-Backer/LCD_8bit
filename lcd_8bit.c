@@ -110,14 +110,16 @@ void lcd_value_int(uint8_t var)
 
 void lcd_setCursor(uint8_t LCD_row,uint8_t LCD_col)
 {
-#ifdef LCD_4x20
+#if(LCD_rows==4)
     static uint8_t LCD_row_offsets[4]= { 0x00, 0x40, 0x14, 0x54 };
-#else
-#ifdef LCD_2x20_16
+#elif(LCD_rows==3)
+    static uint8_t LCD_row_offsets[3]= { 0x00, 0x40, 0x14 };
+#elif(LCD_rows==2)
     static uint8_t LCD_row_offsets[2]= { 0x00, 0x40 };
+#elif(LCD_rows==1)
+    static uint8_t LCD_row_offsets[1]= { 0x00 };
 #else
-#error no LCD_ defane
-#endif
+#error no LCD_rows define
 #endif
     lcd_cmd(0x80 | (LCD_col + LCD_row_offsets[LCD_row]));
 }

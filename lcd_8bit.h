@@ -19,7 +19,7 @@ extern "C"{
 #endif
 #include <stdlib.h>
 
-#define LCD_4x20   /*LCD_4x20 or LCD_2x20_16 */
+#define LCD_rows        4   /*LCD_row 1, 2, 3 or 4 */
 
 #define LCD_data_pin    PINA
 #define LCD_data_DDR    DDRA
@@ -37,7 +37,7 @@ extern "C"{
 #define LCD_EN          0x04 //pin 2
 #define LCD_DDR_EN      DDRB
 #define LCD_port_EN     PORTB
-#define Execution_time_clear_display     2 //is in ms
+
 #define Execution_time_cmd     100 //is in µs
 
 void LCD_busy(void);
@@ -47,10 +47,10 @@ void lcd_init (void);
 // Function to display single Character
 void lcd_data (unsigned char dat);
 // Function to display a String
-void lcd_puts(char *a);//ok
+void lcd_puts(char *a);
 void lcd_value_int(uint8_t var);
-void lcd_setCursor(uint8_t LCD_row,uint8_t LCD_col);//ok
-void lcd_clear();//ok
+void lcd_setCursor(uint8_t LCD_row,uint8_t LCD_col);
+void lcd_clear();
 //Input:
 //     location: location where you want to store
 //               0,1,2,....7
@@ -61,7 +61,7 @@ void lcd_clear();//ok
 //     LCD_build(1,pattern);
 //
 //LCD Ports are same as discussed in previous sections
-void LCD_build(unsigned char location, unsigned char *ptr);// ok
+void LCD_build(unsigned char location, unsigned char *ptr);
 
 #ifdef __cplusplus
 } // extern "C"
